@@ -14,6 +14,7 @@ let jugador2 = "";
 let simbolos = { j1: "X", j2: "O" };
 let juegoActivo = false;
 
+// funcion de actualizar estados 
 function actualizarEstado(mensaje) {
   estadoEl.textContent = mensaje || '';
 }
@@ -23,6 +24,7 @@ function resetearTablero() {
   document.querySelectorAll('#tablero td').forEach(td => td.textContent = "");
 }
 
+// funcion de habiliitar tablero 
 function habilitarTablero(habilitar) {
   if (habilitar) {
     tableroEl.classList.remove('deshabilitado');
@@ -30,7 +32,7 @@ function habilitarTablero(habilitar) {
     tableroEl.classList.add('deshabilitado');
   }
 }
-
+// funcion de  iniciar juego
 function iniciarJuego() {
   jugador1 = jugador1Input.value.trim();
   jugador2 = jugador2Input.value.trim();
@@ -51,6 +53,7 @@ function iniciarJuego() {
   actualizarEstado(`Turno: ${turno} (${turno === simbolos.j1 ? jugador1 : jugador2})`);
 }
 
+// funcion  de reiniciar juego 
 function reiniciarJuego() {
   juegoActivo = false;
   resetearTablero();
