@@ -13,6 +13,7 @@ let jugador1 = "";
 let jugador2 = "";
 let simbolos = { j1: "X", j2: "O" };
 let juegoActivo = false;
+let contraComputadora = true;
 
 // funcion de actualizar estados 
 function actualizarEstado(mensaje) {
@@ -83,6 +84,34 @@ function jugar(e) {
   actualizarEstado(`Turno: ${turno} (${turno === simbolos.j1 ? jugador1 : jugador2})`
   );
 }
+
+// funcion para que juege la  computadora
+function jugarComputadora () {
+  if (!juegoActivo) return;
+
+  //buscar casillas vacias 
+  const libres = tablero 
+}
+//funcion para que la computadora calcule  mejores jugadas
+ function encontrarMejorMovimientos(simbolo) {
+  const combinaciones = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+  ];
+
+  for (let combo of combinaciones) {
+    const [a,b,c] = combo;
+    const  valores = [tablero[a], tablero[b], tablero[c]];
+    if (
+      valores.filter(v => v === simbolo).length ===  2 && valores.includes("")
+    ) {
+      return combo [valores.indexOf("")];
+    }
+  }
+  return null;
+
+ }
 
 // funcion de verificar ganador 
 function verificarGanador(){
