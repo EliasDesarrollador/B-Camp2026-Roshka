@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaTeTi - Juego</title>
-    <link rel="stylesheet" href="estilo.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaTeTi Retro</title>
+
+  <!-- Fuente retro -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <h1>Bienvenido a TaTeTi con Javascript</h1>
+  <main class="page-bg">
+    <section class="retro-window">
+      <header class="title-bar">
+        <div class="window-controls">
+          <span class="btn red"></span>
+          <span class="btn yellow"></span>
+          <span class="btn green"></span>
+        </div>
+        <div class="title">T A T E T I — RETRO MODE</div>
+        <div class="version">v1.0</div>
+      </header>
 
-    <div>
-        <label for="jugador1">Nombre Jugador 1:</label>
-        <input type="text" id="jugador1" placeholder="Jugador 1 (X)">
+      <div class="screen-wrap">
+        <div class="screen">
+          <div class="screen-inner">
+            <div class="left-panel">
+              <div class="controls">
+                <label for="jugador1">Jugador 1</label>
+                <input type="text" id="jugador1" placeholder="Jugador 1 (X)">
+                <label for="jugador2">Jugador 2</label>
+                <input type="text" id="jugador2" placeholder="Jugador 2 (O)">
+                <label for="simbolo">Símbolo J1</label>
+                <select id="simbolo">
+                  <option value="">--Seleccionar--</option>
+                  <option value="X">X</option>
+                  <option value="O">O</option>
+                </select>
+                <label class="modo-ia"><input type="checkbox" id="modoIA"> Jugar contra IA</label>
+                <div class="buttons">
+                  <button id="iniciar">INICIAR</button>
+                  <button id="reiniciar">REINICIAR</button>
+                </div>
+                <div id="estado" class="estado"></div>
+              </div>
+            </div>
 
-        <label for="jugador2">Nombre Jugador 2:</label>
-        <input type="text" id="jugador2" placeholder="Jugador 2 (O)">
+            <div class="play-area">
+              <table id="tablero" class="pixel-board" aria-label="Tablero">
+                <tr>
+                  <td data-index="0"></td><td data-index="1"></td><td data-index="2"></td>
+                </tr>
+                <tr>
+                  <td data-index="3"></td><td data-index="4"></td><td data-index="5"></td>
+                </tr>
+                <tr>
+                  <td data-index="6"></td><td data-index="7"></td><td data-index="8"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
 
-        <label for="simbolo">Seleccionar X o O para el Jugador 1:</label>
-        <select id="simbolo">
-            <option value="">--Seleccionar--</option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
+          <!-- overlay CRT / scanlines -->
+          <div class="crt-overlay"></div>
+          <div class="scanlines"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <button id="iniciar">Iniciar Juego</button>
-    </div>
-
-    <div id="estado" class="estado"></div>
-
-    <table id="tablero" class="deshabilitado">
-        <tr>
-            <td data-index="0"></td>
-            <td data-index="1"></td>
-            <td data-index="2"></td>
-        </tr>
-        <tr>
-            <td data-index="3"></td>
-            <td data-index="4"></td>
-            <td data-index="5"></td>
-        </tr>
-        <tr>
-            <td data-index="6"></td>
-            <td data-index="7"></td>
-            <td data-index="8"></td>
-        </tr>
-    </table>
-
-    <button id="reiniciar">Reiniciar Juego</button>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
