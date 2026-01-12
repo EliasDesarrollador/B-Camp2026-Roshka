@@ -10,11 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const estadoEl = document.getElementById('estado');
   const modoIACheck = document.getElementById('modoIA');
 
-  if (!tableroEl) {
-    console.error('No se encontró el elemento #tablero en el DOM');
-    return;
-  }
-
   let tablero = Array(9).fill("");
   let turno = "X";
   let jugador1 = "";
@@ -36,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // habilitar/deshabilitar tablero (usa clase CSS existente)
+  // habilitar/deshabilitar tablero (usar clase CSS existente)
   function habilitarTablero(habilitar) {
     if (habilitar) {
       tableroEl.classList.remove('deshabilitado');
@@ -156,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     turno = turno === "X" ? "O" : "X";
     actualizarEstado(`Turno: ${turno} (${turno === simbolos.j1 ? jugador1 : jugador2})`);
 
-    // si ahora es turno de IA, ejecutarla
+    // si  es turno de IA, ejecutarla
     if (contraComputadora && turno === simbolos.j2) {
       setTimeout(jugarComputadora, 400);
     }
