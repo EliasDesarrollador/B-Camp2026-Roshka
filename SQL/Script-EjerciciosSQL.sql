@@ -100,4 +100,15 @@ order by total_factura  desc
 limit 10;
 
 
+/* Ejercicio 9 - Mostrar el iva 10% de los montos totales de facturas (suponer que todos los productos tienen IVA 10%) */
+select 
+f.id as factura_id,
+f.fecha_emision,	
+ SUM(df.cantidad * df.producto_id) as total_sin_iva,
+ SUM(df.cantidad * df.producto_id) * 0.10  as iva_10, 
+ SUM(df.cantidad * df.producto_id) * 1.10 as  total_con_iva 
+ from factura f 
+ join factura_detalle df  on df.factura_id = f.id
+group by f.id, f.fecha_emision
+order by total_sin_iva  desc;
 
