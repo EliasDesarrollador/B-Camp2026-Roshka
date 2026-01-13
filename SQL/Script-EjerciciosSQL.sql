@@ -41,9 +41,20 @@ SELECT
    p.nombre AS proveedor, 
    COUNT(pr.id) AS total_productos 
 FROM proveedor  p 
-join producto pr on pr.proveedor_id  = p.id 
+JOIN producto pr ON pr.proveedor_id  = p.id 
+GROUP BY p.nombre 
+ORDER BY total_productos DESC
+LIMIT 5;
+
+
+/* Ejercicio 5 - Productos mas vendidos */
+select 
+   p.nombre as producto,
+    SUM(df.cantidad) as  total_vendido
+from factura_detalle df 
+join producto p on p.id = df.producto_id 
 group by p.nombre 
-order by total_productos desc
+order by total_vendido desc 
 limit 5;
 
 
