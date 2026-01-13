@@ -58,6 +58,16 @@ order by total_vendido desc
 limit 5;
 
 
+/* Ejercicio 6 - Productos menos vendidos */
+select 
+   p.nombre as producto, 
+   MIN(df.cantidad) as  menos_vendido
+   from factura_detalle df 
+   join producto p  on p.id = df.producto_id 
+   group by p.nombre 
+   order by menos_vendido desc
+   limit 10;
+
 
 
 
