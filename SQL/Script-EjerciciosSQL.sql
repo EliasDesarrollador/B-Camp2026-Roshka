@@ -67,9 +67,23 @@ select
    group by p.nombre 
    order by menos_vendido desc
    limit 10;
+		
 
-
-
-
+/* Ejercicio  7 - Consulta que muestre fecha de emisión de factura,
+ * nombre y apellido del cliente, nombres de productos de esa factura, 
+ * cantidades compradas, nombre de tipo de factura de una factura específica */ 
+select 
+ f.fecha_emision,
+ c.nombre as cliente_nombre,
+ c.apellido as cliente_apellido,				
+ p.nombre  as producto,
+ df.cantidad,
+ tf.nombre as tipo_factura 
+ from factura f 
+ join cliente c on c.id = f.cliente_id 
+ join factura_detalle df on df.factura_id = f.id 
+ join producto p  on  p.id = df.producto_id
+ join factura_tipo tf on tf.id  = f.factura_tipo_id 
+ where f.id = 123; 
 
 
