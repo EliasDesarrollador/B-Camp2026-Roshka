@@ -11,5 +11,17 @@ group by c.id , c.nombre , c.apellido
 order by total_facturas desc;
 
 
+
+
 /*Ejercicio 2 - Top clientes que mas gastaron */
 SELECT
+   c.id,
+   c.nombre,
+   c.apellido,
+   SUM(f.factura_tipo_id ) AS total_gastado
+FROM cliente c  
+JOIN factura f ON F.cliente_id  = c.id 
+GROUP BY c.id , c.nombre , c.apellido 
+ORDER BY  total_gastado  DESC
+LIMIT 10;
+
