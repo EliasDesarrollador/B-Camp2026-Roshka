@@ -92,9 +92,12 @@ select
    f.id  as factura_id,
    f.fecha_emision,
    f.cliente_id,
-   f.total
-   from  factura f
-   order by f.total desc;
+   SUM(df.cantidad * df.producto_id ) as total_factura
+from  factura f
+join factura_detalle df on df.factura_id = f.id 
+group by f.id , f.fecha_emision ,  f.cliente_id 
+order by total_factura  desc
+limit 10;
 
 
 
