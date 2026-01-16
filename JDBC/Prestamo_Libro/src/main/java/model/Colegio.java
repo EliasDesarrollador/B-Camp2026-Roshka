@@ -4,8 +4,7 @@ public class colegio {
 
     private int codColegio ;
     private String nomColegio;
-
-
+    
     public int getCodColegio() {
         return codColegio;
     }
