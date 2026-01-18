@@ -23,4 +23,25 @@ public class CursoDAO {
            e.printStackTrace();
         }
     }
+
+    // METODO LISTAR
+    public List<curso> listar(){
+        List<curso> lista = new ArrayList<>();
+        String sql ="SELECT * FROM curso";
+
+        try( Connection conn = Conexion.getConexion();
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(sql));
+
+        while(rs.next()){
+            curso c = new curso();
+            c.setCodCurso(rs.getInt ("cod_curso"));
+            c.setNomCurso(rs.getString("nom_curso"));
+            c.setAula(rs.getString("Aula"));
+
+            lista.add(c);
+        }catch(SQLException e )
+         e.printStackTrace();
+    }
+    return lista;
 }
