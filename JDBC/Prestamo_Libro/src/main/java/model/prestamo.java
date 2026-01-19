@@ -56,6 +56,6 @@ public class Prestamo {
     }
 
     public void setFechaPrestamo(LocalDate fechaPrestamo){
-        this.codPrestamo = codPrestamo;
+        this.fechaPrestamo = fechaPrestamo;
     }
 }

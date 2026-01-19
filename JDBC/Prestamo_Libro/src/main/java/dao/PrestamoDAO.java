@@ -1,3 +1,4 @@
+
 package dao;
 
 import config.Conexion;
@@ -6,6 +7,11 @@ import model.Prestamo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class PrestamoDAO {
@@ -13,19 +19,18 @@ public class PrestamoDAO {
     // METODO INSERTAR
     public void insertar (Prestamo prestamo){
         String sql = """
-            INSERT INTO prestamo
-            (cod_libro, cod_profesor, cod_asignatura, cod_curso, fecha_prestamo)
-            VALUES (?, ?, ?, ?, ?)
-        """;
+        INSERT INTO prestamo
+        (cod_libro, cod_profesor, cod_asignatura, cod_curso, fecha_prestamo)
+        VALUES (?, ?, ?, ?, ?)
+    """;
         try (Connection conn = Conexion.getConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)){
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-
-            ps.setInt(2,prestamo.getCodLibro());
-            ps.setInt(1,prestamo.getCodProfesor());
-            ps.setInt(3,prestamo.getCodAsignatura());
-            ps.setInt(4,prestamo.getCodCurso());
-            ps.setDate(5,prestamo.getFechaPrestamo());
+            ps.setInt(1, prestamo.getCodLibro());
+            ps.setInt(2, prestamo.getCodProfesor());
+            ps.setInt(3, prestamo.getCodAsignatura());
+            ps.setInt(4, prestamo.getCodCurso());
+            ps.setDate(5, java.sql.Date.valueOf(prestamo.getFechaPrestamo())); //
 
             ps.executeUpdate();
 
@@ -50,10 +55,9 @@ public class PrestamoDAO {
                 p.setCodLibro(rs.getInt("cod_libro"));
                 p.setCodAsignatura(rs.getInt("cod_asignatura"));
                 p.setCodCurso(rs.getInt("cod_curso"));
-                p.setFechaPrestamo(rs.getDate("fecha_prestamo"));
+                p.setFechaPrestamo(rs.getDate("fecha_prestamo").toLocalDate()); //
 
                 lista.add(p);
-
             }
 
         }catch (SQLException e ) {
@@ -62,30 +66,34 @@ public class PrestamoDAO {
         return lista;
     }
 
+
     // METODO UPDATE
-    public void actualizar (int codPrestamo) {
+    public void actualizar(Prestamo prestamo) {
         String sql = """
-                UPDATE prestamo 
-                SET cod_profesor = ? , cod_libro = ?, 
-                cod_asignatura = ?, cod_curso = ? , fecha_prestamo = ?
-                WHERE  cod_prestamo = ? 
-                """;
+           UPDATE prestamo
+           SET cod_libro = ?, cod_profesor = ?, cod_asignatura = ?, cod_curso = ?, fecha_prestamo = ?
+           WHERE cod_prestamo = ?
+           """;
+
 
         try (Connection conn = Conexion.getConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, Prestamo.getCodProfesor());
-            ps.setInt(2, Prestamo.getCodCurso());
-            ps.setInt(3, Prestamo.getCodLibro());
-            ps.setInt(4, Prestamo.getCodAsignatura());
-            ps.setDate(5,Prestamo.getFechaPrestamo());
+            ps.setInt(1, prestamo.getCodLibro());
+            ps.setInt(2, prestamo.getCodProfesor());
+            ps.setInt(3, prestamo.getCodAsignatura());
+            ps.setInt(4, prestamo.getCodCurso());
+            ps.setDate(5, java.sql.Date.valueOf(prestamo.getFechaPrestamo()));
+            ps.setInt(6, prestamo.getCodPrestamo());
+
 
             ps.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     // METODO ELIMINAR
     public void eliminar(int codPrestamo){
