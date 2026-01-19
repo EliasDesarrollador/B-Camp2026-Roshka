@@ -14,8 +14,8 @@ public class ProfesorDAO {
         try (Connection conn = Conexion.getConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, profesor.getNomProfesor);
-            ps.setInt(2, profesor.getCodColegio);
+            ps.setString(1, profesor.getNomProfesor());
+            ps.setInt(2, profesor.getCodColegio());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -28,6 +28,7 @@ public class ProfesorDAO {
     public List<Profesor> Listar (){
         List<Profesor> lista = new ArrayList<>();
 
+
         String sql = "SELECT * FROM profesor ";
 
         try(Connection conn = Conexion.getConexion();
@@ -35,8 +36,9 @@ public class ProfesorDAO {
             ResultSet rs = st.executeQuery(sql)){
 
             while (rs.next()){
+                Profesor p = new Profesor();
                 p.setCodProfesor(rs.getInt("cod_profesor"));
-                p.setNomProfesror(rs.getString("nom_profesor"));
+                p.setNomProfesor(rs.getString("nom_profesor"));
                 p.setCodColegio(rs.getInt("cod_colegio"));
 
                 lista.add(p);
@@ -59,7 +61,7 @@ public class ProfesorDAO {
 
             ps.setString(1,profesor.getNomProfesor());
             ps.setInt(2,profesor.getCodColegio());
-            ps.setInt(3,profesor.CodColegio());
+            ps.setInt(3,profesor.getCodColegio());
 
             ps.executeUpdate();
         } catch (Exception e) {
