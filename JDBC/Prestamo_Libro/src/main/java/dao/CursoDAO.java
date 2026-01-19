@@ -33,18 +33,21 @@ import java.util.List;
 
            try (Connection conn = Conexion.getConexion();
                 Statement st = conn.createStatement();
-                ResultSet rs = st.executeQuery(sql))
+                ResultSet rs = st.executeQuery(sql)) {
 
            while (rs.next()) {
                Curso c = new Curso();
                c.setCodCurso(rs.getInt("cod_curso"));
                c.setNomCurso(rs.getString("nom_curso"));
-               c.setAula(rs.getString("Aula"));
+               c.setAula(rs.getString("aula"));
 
                lista.add(c);
-           }catch(SQLException e )
-           e.printStackTrace();
-       }
+           }
+
+       } catch(SQLException e ){
+               e.printStackTrace();
+           }
+
        return lista;
    }
 
@@ -55,9 +58,9 @@ import java.util.List;
              try(Connection conn = Conexion.getConexion();
                         PreparedStatement ps = conn.prepareStatement(sql)){
 
-                        ps.setString(1,curso.getCurso);
-                        ps.setString(2,curso.getAula);
-                        ps.setInt(3,curso.getCodCurso);
+                        ps.setString(1,curso.getNomCurso());
+                        ps.setString(2,curso.getAula());
+                        ps.setInt(3,curso.getCodCurso());
 
                         ps.executeUpdate();
 
@@ -67,69 +70,18 @@ import java.util.List;
       }
 
       // METODO ELIMINAR
-       public void eliminar (int codCurso){
-          String sql = "DELETE FROM curso WHERE cod_curso = ?";
+       public void eliminar (int codCurso) {
+           String sql = "DELETE FROM curso WHERE cod_curso = ?";
 
-          try (Connection conn = Conexion.getConexion();
-               PreparedStatement ps = conn.prepareStatement(sql){
+           try (Connection conn = Conexion.getConexion();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
 
-                   ps.setInt(1,codCurso);
-                   ps.executeUpdate();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-                    }
+               ps.setInt(1, codCurso);
+               ps.executeUpdate();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
        }
-    // METODO LISTAR
-    public List<Curso> listar(){
-        List<Curso> lista = new ArrayList<>();
-        String sql ="SELECT * FROM curso";
 
-        try( Connection conn = Conexion.getConexion();
-        Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(sql))
 
-        while(rs.next()){
-            Curso c = new Curso();
-            c.setCodCurso(rs.getInt ("cod_curso"));
-            c.setNomCurso(rs.getString("nom_curso"));
-            c.setAula(rs.getString("Aula"));
-
-            lista.add(c);
-        }catch(SQLException e )
-         e.printStackTrace();
-    }
-    return lista;
-
-    // METODO UPDATE
-    public void actualizar (Curso curso ){
-        String  sql = "UPDATE curso SET nom_curso = ?,  aula = ? WHERE  cod_curso = ?";
-
-        try(Connection conn = Conexion.getConexion();
-        PreparedStatement ps = conn.prepareStatement(sql)){
-
-            ps.setString(1,curso.getCurso);
-            ps.setString(2,curso.getAula);
-            ps.setInt(3,curso.getCodCurso);
-
-            ps.executeUpdate();
-
-        }catch (SQLException e ){
-            e.printStackTrace();
-        }
-    }
-
-    // METODO ELIMINAR
-    public void eliminar (int codCurso){
-        String sql = "DELETE FROM curso WHERE cod_curso = ?";
-
-        try (Connection conn = Conexion.getConexion();
-        PreparedStatement ps = conn.prepareStatement(sql){
-
-            ps.setInt(1,codCurso);
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
