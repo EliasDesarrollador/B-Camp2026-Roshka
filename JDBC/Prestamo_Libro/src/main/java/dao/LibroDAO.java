@@ -6,14 +6,13 @@ import model.Libro;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
- public class LibroDAO
-  // INSERT
+public class LibroDAO {
+    // INSERT
     public void insertar(Libro libro) {
         String sql = "INSERT INTO prestamo_libro_ej4.libro (titulo, editorial ) VALUES (?,?)";
 
-        try (Conexion con = Conexion.getConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, libro.getTitulo());
             ps.setString(2, libro.getEditorial());
@@ -27,13 +26,13 @@ import java.util.List;
     }
 
     // METODO LISTAR
-    public List<Libro> listar(Libro libro ) {
+    public List<Libro> listar() {
         List<Libro> lista = new ArrayList<>();
         String sql = "SELECT * FROM libro ";
 
         try (Connection conn = Conexion.getConexion();
              Statement st = conn.createStatement();
-             Resulset rs = st.executeQuery(sql)) {
+             ResultSet rs = st.executeQuery(sql)) {
 
             while (rs.next()) {
                 Libro l = new Libro();
@@ -51,16 +50,16 @@ import java.util.List;
     }
 
     // METODO ACTUALIZAR
-    public  void actualizar(Libro  libro) {
+    public void actualizar(Libro libro) {
 
         String sql = "UPDATE libro SET titulo = ?, editorial = ?  WHERE cod_libro = ?";
 
         try (Connection conn = Conexion.getConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, getTitulo);
-            ps.setString(2, getEditorial);
-            ps.setInt(3, getCodLibro);
+            ps.setString(1, libro.getTitulo());
+            ps.setString(2, libro.getEditorial());
+            ps.setInt(3, libro.getCodlibro());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -70,16 +69,17 @@ import java.util.List;
     }
 
     // METODO ELIMINAR
-    public void eliminar (int codLibro){
-     String sql = "DELETE FROM libro WHERE cod_libro = ? ";
+    public void eliminar(int codLibro) {
+        String sql = "DELETE FROM libro WHERE cod_libro = ? ";
 
-     try(Connection conn = Conexion.getConexion();
-         PreparedStatement ps = conn.prepareStatement(sql)){
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-         ps.setInt(1,codLibro);
-         ps.executeUpdate();
+            ps.setInt(1, codLibro);
+            ps.executeUpdate();
 
-     } catch (SQLException e) {
-         e.printStackTrace();
-     }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
