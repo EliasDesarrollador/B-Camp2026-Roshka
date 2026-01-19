@@ -4,19 +4,19 @@ public class Asignatura {
     private int codAsignatura;
     private String nomAsignatura;
 
-    public int getCodColegio(){
+    public int getCodAsignatura(){
         return codAsignatura;
     }
 
-    public void setCodColegio(int codColegio){
+    public void setCodAsignatura(int codAsignatura){
         this.codAsignatura = codAsignatura;
     }
 
-    public String getNomColegio(){
+    public String getNomAsignatura(){
         return nomAsignatura;
     }
 
-    public void setNomColegio(String nomColegio){
-        this.nomAsignatura = nomColegio;
+    public void setNomAsignatura(String nomAsignatura){
+        this.nomAsignatura = nomAsignatura;
     }
 }

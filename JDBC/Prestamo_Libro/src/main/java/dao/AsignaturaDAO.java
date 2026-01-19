@@ -11,7 +11,7 @@ public class AsignaturaDAO {
 
     // METODO INSERTAR
     public void insertar(Asignatura asignatura) {
-        String sql = "INSERT INTO asignatura (nom_asignatura) VALUES  (?);
+        String sql = "INSERT INTO asignatura (nom_asignatura) VALUES (?)";
 
         try (Connection conn = Conexion.getConexion();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -27,7 +27,7 @@ public class AsignaturaDAO {
     // METODO LISTAR
     public List<Asignatura> listar() {
         List<Asignatura> lista = new ArrayList<>();
-        String sql = "SELECT FROM asignatuura";
+        String sql = "SELECT * FROM asignatura";
 
         try (Connection conn = Conexion.getConexion();
              Statement st = conn.createStatement();
@@ -35,17 +35,15 @@ public class AsignaturaDAO {
 
             while (rs.next()) {
                 Asignatura a = new Asignatura();
-                a.setCodColegio(rs.getInt("cod_asignatura"));
-                a.setNomColegio(rs.getString("nom_aignatura"));
-
+                a.setCodAsignatura(rs.getInt("cod_asignatura"));
+                a.setNomAsignatura(rs.getString("nom_asignatura"));
                 lista.add(a);
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return lista;
-
     }
 
     // METODO UPDATE
