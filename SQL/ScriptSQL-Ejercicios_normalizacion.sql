@@ -331,7 +331,7 @@ foreign key (cod_curso) references curso (cod_curso)
 /*Creamos el quinto esquema */
 create schema reporte_matricula_ej5;
 
-/* Le marcamos el nombre del quinto esquema donde vamos a crear las tablas */
+/* Le marcamos el nombre del quinto esquema donde vamos a crear las tablas */	
 set search_path to reporte_matricula_ej5;
 
 
