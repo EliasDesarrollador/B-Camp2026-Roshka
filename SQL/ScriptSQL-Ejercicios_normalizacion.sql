@@ -6,7 +6,7 @@ create schema colombian_systems_ej1;
 /* Le marcamos el nombre del primer esquema donde vamos a crear las tablas */
 set search_path to colombian_systems_ej1;
 
-
+	
 CREATE TABLE 	cliente(
 RIF_CLIENTE varchar(20) PRIMARY KEY,
 NOM_CLIENTE varchar (100) NOT NULL,
@@ -323,6 +323,12 @@ foreign key (cod_curso) references curso (cod_curso)
 );
 
 /* Prueba de inserciones en las tablas */
+
+SELECT * FROM prestamo_libro_ej4.profesor;
+SELECT * FROM prestamo_libro_ej4.libro;
+SELECT * FROM prestamo_libro_ej4.asignatura;
+SELECT * FROM prestamo_libro_ej4.curso;
+
 
 
 
