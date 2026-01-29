@@ -4,6 +4,7 @@ public class CursoDTO {
 
     private Long codCurso;
     private String nomCurso;
+    private Long aula;
 
     // GETTERS Y SETTERS
     public Long getCodCurso(){
@@ -17,5 +18,13 @@ public class CursoDTO {
     }
     public void setNomCurso(String nomCurso){
         this.nomCurso = nomCurso;
+    }
+
+    public Long getAula(){
+        return aula;
+    }
+
+    public void setAula(Long id ){
+        this.aula = aula;
     }
 }
