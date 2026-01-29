@@ -33,6 +33,17 @@ public class ProfesorController {
     // BUSCAR POR ID (GET /api/profesores/{id})
     public Profesor buscarPorId (@PathVariable Long id) {
         return profesorService.buscarPorId(id);
+    }
 
+    // ACTUALIZAR  (PUT /api/profesores/{id})
+    @PutMapping("/{id}")
+    public Profesor actualizar (@PathVariable Long id, @RequestBody Profesor profesor ) {
+        return profesorService.actualizar(id, profesor);
+
+    }
+    // ELIMINAR (DELETE /api/profesores/{id})
+    @DeleteMapping("/{id}")
+    public void eliminar (@PathVariable Long id ){
+        profesorService.eliminar(id);
     }
 }
