@@ -14,7 +14,7 @@ public class Asignatura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_asignatura", nullable = false)
-    private Long id;
+    private Long codAsignatura;
 
     @Size(max = 255)
     @NotNull

@@ -31,7 +31,8 @@ public class ColegioServiceImpl  implements  ColegioService {
 
     @Override
     public Colegio buscarPorId (Long id ){
-        colegioRepository.findById(id).orElse(null);
+
+        return colegioRepository.findById(id).orElse(null);
     }
 
     @Override
