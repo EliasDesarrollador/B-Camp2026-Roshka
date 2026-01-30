@@ -18,7 +18,7 @@ public class LibroController {
     }
 
     @PostMapping
-    public Libro crear (@RequestBody LibroService LibroDTO dto ){
+    public Libro crear (@RequestBody  LibroDTO dto ){
         return libroService.guardarDesdeDTO(dto);
     }
 
