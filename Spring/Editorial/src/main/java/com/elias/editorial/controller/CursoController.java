@@ -2,6 +2,7 @@ package com.elias.editorial.controller;
 
 import com.elias.editorial.dto.CursoDTO;
 import com.elias.editorial.model.Curso;
+import com.elias.editorial.service.CursoService;
 import com.elias.editorial.repository.CursoRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,7 @@ public class CursoController {
     }
     @PutMapping("/{id}")
     public Curso actualizar (@PathVariable Long id ,@RequestBody Curso curso ){
-        return cursoService.actualizar(id , curso);
+        return cursoService.actualizar(id ,curso);
     }
     @DeleteMapping("/{id}")
     public void eliminar (@PathVariable Long id ){
